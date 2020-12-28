@@ -1,0 +1,351 @@
+{% extends "./report_layout.html" %}
+
+{% block title %}
+Liste des réclamations
+{% endblock title %}
+
+{% block body %}
+<div class="container-fluid" ng-app="List" ng-controller="ViewReport">
+  <!-- title -->
+  <h1 class="text-center mt-4 lang" key="report_list_page_title">Liste des réclamations</h1>
+
+  <div class="content-table container-sm">
+
+    <!-- Search form  -->
+    <div class="form-content">
+      <div class="search-form-content">
+        <span class="search-input-form">
+          <input type="text" ng-model="search_value.subject" name="search" class="lang" key="report_list_search_input"
+            placeholder="Search">
+        </span>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col text-success" class="lang" key="report_list_report_name">Nom Réclamation</th>
+          <th scope="col text-success" class="lang" key="report_list_reporter">Rapporteur</th>
+          <th scope="col text-success" class="lang" key="report_list_pc_name">Nom PC</th>
+          <th scope="col text-success" class="lang" key="report_list_pc_number">Num PC</th>
+          <th scope="col text-success" class="lang" key="report_list_date">Date</th>
+          <th scope="col text-success" class="lang" key="report_list_description">Description</th>
+        </tr>
+
+      </thead>
+      <tbody>
+
+        <tr dir-paginate="value in results | filter:search_value | orderBy: '-date'| itemsPerPage: 7 "
+          class="report-list-row">
+          <td ng-bind="value.subject | limitTo: 20:0 "></td>
+          <td ng-bind="value.first_name +' '+ value.last_name"></td>
+          <td ng-bind="value.pc_name"></td>
+          <td ng-bind="value.pc_number"></td>
+          <td ng-bind="value.date | date:'MM/dd/yyyy'"></td>
+          <td ng-bind="value.description | limitTo: 50:0 "></td>
+          <td class="btn-manipulation">
+            <!-- Hover buttons -->
+            <div class="btn-group" role="group" aria-label="Manipulate Report">
+              <button type="button" class="plus-info btn btn-primary mr-2 lang" key="report_list_show_more_btn"
+                ng-click="showMore(value.subject, value.first_name +' '+ value.last_name, value.pc_name, value.pc_number, value.date, value.description)">
+                Plus détails
+              </button>
+              <button type="button" class="edit-report btn btn-success mr-2 lang" key="report_list_edit_btn"
+              ng-click="editReport(value.email_id, value.email ,value.user_id, value.report_id, value.subject, value.description)">
+                Editer
+              </button>
+              <button type="button" class="delete-report btn btn-danger lang" key="report_list_delete_btn"
+                ng-click="deleteReport(value.email_id, value.email ,value.user_id, value.report_id)">
+                Supprimer
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Dir Pagination Controls -->
+
+    <dir-pagination-controls>
+      [auto-hide="false"]
+      [max-size="5"]
+    </dir-pagination-controls>
+
+  </div>
+
+
+
+  <!-- Modal for current report on click of the row -->
+
+  <div class="popup-wrapper popup-active animate-if " ng-if="showMorePopup" ng-click="outside($event)">
+    <div class="form-popup-container">
+      <div class="header">
+        <p ng-click="closeModal()">X</p>
+        <h3 ng-bind="modalValues[0]" class="text-success text-uppercase"></h3>
+      </div>
+
+      <div class="content">
+        <div class="row">
+          <div class="col-4 font-weight-bold text-info lang" key="report_list_reporter_name">
+            Nom de Rapporteur:
+          </div>
+
+          <div class="col " ng-bind="modalValues[1]">
+
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="row mt-4 mb-4">
+            <div class="col-4 font-weight-bold text-info lang" key="help_modal_pc_name">
+              Nom PC:
+            </div>
+
+            <div class="col" ng-bind="modalValues[2]">
+
+            </div>
+          </div>
+
+          <div class="content">
+            <div class="row mt-4 mb-4">
+              <div class="col-4 font-weight-bold text-info lang" key="help_modal_pc_number">
+                Numéro de PC:
+              </div>
+
+              <div class="col" ng-bind="modalValues[3]">
+
+              </div>
+            </div>
+
+            <div class="content">
+              <div class="row mt-4 mb-4">
+                <div class="col-4 font-weight-bold text-info lang" key="report_list_sh_more_modal_date">
+                  Date de Rapport:
+                </div>
+
+                <div class="col" ng-bind="modalValues[4]">
+
+                </div>
+              </div>
+
+              <div class="content">
+                <div class="row mt-4 mb-4">
+                  <div class="col-4 font-weight-bold text-info lang" key="help_modal_description">
+                    Description:
+                  </div>
+
+                  <div class="col" ng-bind="modalValues[5]">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for delete Report -->
+  <div class="popup-wrapper popup-active animate-if " ng-if="deletePopup" ng-click="outside($event)">
+    <div class="form-popup-container">
+      <div class="header">
+        <p ng-click="closeModal()">X</p>
+        <h3 class="text-danger text-uppercase"> Supprimer la réclamation </h3>
+      </div>
+
+      <div class="content">
+
+        <div class="row mt-4 ">
+
+          <div class="col-3">
+            <p>Report ID:</p>
+          </div>
+
+          <div class="col-7">
+            <p ng-bind="deleteReportModalValues[3]"></p>
+          </div>
+
+        </div>
+
+        <div class="row mt-4 ">
+
+          <div class="col-3">
+            <p>Email:</p>
+          </div>
+
+          <div class="col-7">
+            <p ng-bind="deleteReportModalValues[1]"></p>
+          </div>
+
+        </div>
+
+        <div class="row mt-4 ">
+
+          <div class="col-3">
+            <p>Vérification Key:</p>
+          </div>
+
+          <div class="col-7">
+            <input type="number" class="form-control" name="vkey" ng-model="vkey" placeholder="exemple 123456">
+          </div>
+
+        </div>
+
+        <!-- Delete Result Alerts -->
+
+        <div class="row">
+          <div class="col-12">
+            <div class="alert alert-danger ng-fade" role="alert" ng-if="deleteError" ng-bind="deleteMessage">
+              <!-- Danger Alert -->
+            </div>
+
+            <div class="alert alert-success ng-fade" role="alert" ng-if="deleteSuccess" ng-bind="deleteMessage">
+              <!-- Sucess Alert -->
+
+            </div>
+
+            <div class="alert alert-warning ng-fade" role="alert" ng-if="deleteWarning" ng-bind="deleteMessage">
+              <!-- Warning Alert -->
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row mt-4 ">
+
+          <div class="col-6">
+            <button class="btn btn-outline-danger btn-block " type="button"
+              ng-click="deleteReportReq(deleteReportModalValues[0], deleteReportModalValues[3], vkey)"
+              ng-if="!delete_request_loading">
+
+              Suprimer
+            </button>
+
+            <button class="btn btn-outline-danger btn-block" type="button" disabled ng-if="delete_request_loading">
+              <span class="spinner-border spinner-border-sm text-danger" role="status" aria-hidden="true"></span>
+              Loading...
+            </button>
+          </div>
+
+          <div class="col-6">
+            <button type="button" class="btn btn-outline-secondary btn-block" ng-click="closeModal()"> Annuler </button>
+          </div>
+
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal for Edit Report -->
+    <div class="popup-wrapper popup-active animate-if " ng-if="editPopup" ng-click="outside($event)">
+      <div class="form-popup-container">
+        <div class="header">
+          <p ng-click="closeModal()">X</p>
+          <h3 class="text-danger text-uppercase"> Editer la réclamation </h3>
+        </div>
+  
+        <div class="content">
+  
+          <div class="row mt-4 ">
+  
+            <div class="col-3">
+              <p>Report ID:</p>
+            </div>
+  
+            <div class="col-7">
+              <p ng-bind="editReportModalValues[3]"></p>
+            </div>
+  
+          </div>
+  
+          <div class="row mt-4 ">
+  
+            <div class="col-3">
+              <p>Email:</p>
+            </div>
+  
+            <div class="col-7">
+              <p ng-bind="editReportModalValues[1]"></p>
+            </div>
+  
+          </div>
+  
+          <div class="row mt-4 ">
+  
+            <div class="col-3">
+              <p>Vérification Key:</p>
+            </div>
+  
+            <div class="col-7">
+              <input type="number" class="form-control" name="vkey" ng-model="vkey" placeholder="exemple 123456">
+            </div>
+  
+          </div>
+
+          <div class="row mt-4 ">
+  
+            <div class="col-3">
+              <p>Description:</p>
+            </div>
+  
+            <div class="col-7">
+              <textarea class="form-control" name="description" ng-model="newDescription" >
+                </textarea>
+            </div>
+  
+          </div>
+  
+          <!-- Edit Result Alerts -->
+  
+          <div class="row">
+            <div class="col-12">
+              <div class="alert alert-danger ng-fade" role="alert" ng-if="deleteError" ng-bind="deleteMessage">
+                <!-- Danger Alert -->
+              </div>
+  
+              <div class="alert alert-success ng-fade" role="alert" ng-if="deleteSuccess" ng-bind="deleteMessage">
+                <!-- Sucess Alert -->
+  
+              </div>
+  
+              <div class="alert alert-warning ng-fade" role="alert" ng-if="deleteWarning" ng-bind="deleteMessage">
+                <!-- Warning Alert -->
+              </div>
+  
+            </div>
+          </div>
+  
+          <div class="row mt-4 ">
+  
+            <div class="col-6">
+              <button class="btn btn-outline-success btn-block " type="button"
+                ng-click="editReportReq(editReportModalValues[0], editReportModalValues[3], vkey, newDescription)"
+                ng-if="!delete_request_loading">
+  
+                Editer
+              </button>
+  
+              <button class="btn btn-outline-danger btn-block" type="button" disabled ng-if="delete_request_loading">
+                <span class="spinner-border spinner-border-sm text-danger" role="status" aria-hidden="true"></span>
+                Loading...
+              </button>
+            </div>
+  
+            <div class="col-6">
+              <button type="button" class="btn btn-outline-secondary btn-block" ng-click="closeModal()"> Annuler </button>
+            </div>
+  
+          </div>
+  
+  
+  
+        </div>
+      </div>
+    </div>
+
+</div> <!-- End container div -->
+{% endblock body %}

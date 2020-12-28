@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 
+        {% block title %}
+    
+        {% endblock title %}
+    </title>
+    {% load static %}
+
+    <script defer src="{% static 'js/libs/all.min.js' %}"></script> <!-- Font Awesome Script -->
+    <script defer src="{% static 'js/libs/jQuery.js' %}"></script>
+
+    <script defer src="{% static 'js/libs/anime.min.js' %}"></script>   
+    <script defer src="{% static 'js/libs/AngularJS.min.js' %}"></script>
+    <script defer src="{% static 'js/libs/AngularJS_animate.min.js' %}"></script>
+    <script defer src="{% static 'js/libs/angular_router.js' %}"></script> <!-- angular js routes lib --> 
+    <script defer src="{% static 'js/libs/dir_pagination.js' %}"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/libs/all.min.css' %}"> <!-- Font Awesome css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/commun.css' %}">
+    {% if isAdmin %}
+    <script defer src="{% static 'js/admin.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/admin_style.css' %}">
+    {% else %}
+    <script defer src="{% static 'js/animations.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/user_style.css' %}">
+    {% endif %}
+    <script defer src="{% static 'js/app.js' %}"></script>
+    <script defer src="{% static 'js/handler.js' %}"></script>
+    <script defer src="{% static 'js/applications.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom_fas.css' %}">
+
+    {% if bootstrap %}
+    <!-- Open bootstrap on certain pages -->
+        <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}"> 
+        <script defer src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+        <script defer src="{% static 'js/libs/popperjs.js' %}"></script>
+    {% endif %}
+
+    {% if mdbootstrap %}
+         <!-- Load Material design bootstrap on certain pages -->
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/libs/bootstrap.min.css' %}"> 
+        <link rel="stylesheet" type="text/css" href="{% static 'css/libs/mdb.min.css' %}">  <!-- Material design Bootstrap css -->
+
+        <script defer src="{% static 'js/libs/popperjs.js' %}"></script>
+        <script defer src="{% static 'js/libs/bootstrap.min.js' %}"></script>
+        <script defer src="{% static 'js/libs/mdb.min.js' %}"></script> <!-- Material design Bootstrap js -->
+
+    {% endif %}
+
+</head>
+<body class="pre-load">
+    {% block header %}
+    
+    {% endblock header %}
+
+    {% block body %}
+   
+    {% endblock body %} 
+</body>
+</html>

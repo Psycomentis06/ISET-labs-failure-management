@@ -1,0 +1,78 @@
+{% extends "./report_layout.html" %}
+
+{% block title %}
+Etat des PCs
+{% endblock title %}
+
+{% block body %}
+
+<div class="container-fluid" ng-app="List" ng-controller="ViewReport">
+  <!-- title -->
+  <h1 class="text-center mt-4 lang" key="stat_page_title">Etat des PCs</h1>
+
+  <div class="content-table container-sm">
+
+    <!-- Search form  -->
+    <div class="form-content">
+      <div class="search-form-content">
+        <span class="search-input-form">
+          <input type="text" ng-model="search_value.pc_name" name="search" class="lang" key="stat_search_input"
+            placeholder="Search">
+        </span>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col text-success" class="lang" key="stat_pc_name">Nom du PC</th>
+          <th scope="col text-success" class="lang" key="stat_pc_stat">Etat</th>
+          <th scope="col text-success" class="lang" key="stat_last_update">Dernière mise à jour</th>
+        </tr>
+
+      </thead>
+      <tbody>
+
+        <tr dir-paginate="value in results | filter:search_value | orderBy: '-last_update'| itemsPerPage: 7 "
+          class="report-list-row animate-repeat">
+          <td ng-bind="value.pc_name"></td>
+          <td>
+            {% if isAdmin %}
+            <!-- Admin buttons -->
+            <div ng-if="value.stat" title="Works Fine">
+              <!-- Green button -->
+              <button class="stat-perfect" ng-click="ChangeStat(value.id)"></button>
+            </div>
+            <div  ng-if="!value.stat" title="Reported" >
+              <!-- Red Button -->
+              <button class="stat-reported" ng-click="ChangeStat(value.id)"></button>
+            </div>
+            {% else %}
+              <!-- User bubbels -->
+            <div class="stat-perfect" ng-if="value.stat" title="Works Fine" >
+              <!-- Green button -->
+            </div>
+            <div class="stat-reported" ng-if="!value.stat" title="Reported">
+              <!-- Red Button -->
+            </div>
+
+            {% endif %}
+
+          </td>
+          <td ng-bind="value.last_update | date:'MM/dd/yyyy  h:mma '"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Dir Pagination Controls -->
+
+    <dir-pagination-controls>
+      [auto-hide="false"]
+      [max-size="5"]
+    </dir-pagination-controls>
+
+  </div>
+
+</div> <!-- End container div -->
+
+{% endblock body %}

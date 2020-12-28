@@ -1,0 +1,82 @@
+<!-- Dashborad template -->
+
+<div class="admin-dashboard">
+    <h1>Home</h1>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="row">
+                <div class="col">
+                    <center>
+                        <h2>Recent notifications</h2>
+                    </center> <br>
+                    <!-- Notification content -->
+
+                    <div ng-if="noDataFound">
+                        <!-- Danger alert No data found -->
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong><b>No Data found</b></strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                                ng-click="close_alerts()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="notifcations-content" ng-if="!noDataFound">
+                        <ul class="list-group">
+                            <div ng-repeat="notif in notifsData | reverse">
+                                <div ng-if="notif.new">
+                                    <!-- New notifs unseen -->
+                                    <div class="alert alert-primary new-notification" role="alert"
+                                        ng-click="changeNotifToSeen(notif.notif_id)"
+                                        title="click to set notification as seen">
+                                        <h4 class="alert-heading" ng-bind="notif.report_name"></h4>
+                                        <hr>
+                                        <p><strong>Notifiation date :&nbsp;</strong>
+                                        <p ng-bind="notif.date|date"></p>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <br>
+                                <div ng-if="!notif.new">
+                                    <div class="alert alert-secondary" role="alert">
+                                        <!-- OLD seen  -->
+                                        <h4 class="alert-heading" ng-bind="notif.report_name"></h4>
+                                        <hr>
+                                        <p><strong>Notifiation date :&nbsp;</strong>
+                                        <p ng-bind="notif.date|date"></p>
+                                        </p>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="row">
+                <div class="col">
+                    <center>
+                        <h2>Most reported PCs</h2>
+                    </center>
+                    <!-- most reported PCs box -->
+                    <div class="pcs-data">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="pc in pcsData | orderBy: '-pc_id__count'">
+                                <div class="row">
+                                    <div class="col-12"> PC ID: &nbsp; %/pc.pc_id/% </div>
+                                    <div class="col-12">Times: &nbsp; %/pc.pc_id__count/%</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

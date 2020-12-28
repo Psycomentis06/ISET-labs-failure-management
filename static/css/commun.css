@@ -1,0 +1,436 @@
+@charset "UTF-8";
+/**
+*  This file containe the commun style between user and admin styles
+*/
+/*
+    Parent Element
+*/
+* {
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  font-family: "Poor Richard", Courier, monospace;
+  font-style: 18pt;
+}
+
+.pre-load {
+  /*CSS transitions*/
+  transition-property: none !important;
+  /*CSS transforms*/
+  transform: none !important;
+  /*CSS animations*/
+  animation: none !important;
+}
+
+/*
+    Continer of all pages
+*/
+.container {
+  overflow: hidden;
+}
+
+/*
+    Header and Nav bar
+*/
+header {
+  margin-top: 15px;
+  width: 100%;
+  height: 50px;
+  position: relative;
+}
+
+header .plat-name {
+  position: absolute;
+  top: auto;
+  left: 50px;
+  text-align: center;
+  max-width: 300px;
+  padding: 20px 0;
+  font-size: 25pt;
+  font-weight: bold;
+}
+
+header .plat-name .name-text {
+  width: 200px;
+  line-height: 30%;
+}
+
+header .header-list {
+  position: absolute;
+  right: 30px;
+  width: 1000px;
+  height: 50px;
+  background-color: #00FF9D;
+  list-style: none;
+  border: transparent;
+  border-radius: 30px;
+  text-align: center;
+}
+
+header .header-list li {
+  display: inline-block;
+  width: 180px;
+  text-align: center;
+  line-height: 2.5;
+  color: #ffffff;
+  font-size: 15pt;
+  z-index: 1;
+}
+
+header .header-list a {
+  text-decoration: none;
+  color: #000000;
+}
+
+header .header-list .active {
+  position: relative;
+}
+
+header .header-list .active ::before {
+  content: '';
+  width: 180px;
+  height: 30px;
+  position: absolute;
+  top: 20%;
+  left: 0%;
+  background-color: #8EFFAC;
+  border: transparent;
+  border-radius: 15px;
+  z-index: -1;
+}
+
+header .header-list .lang-select {
+  width: 150px;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+header .header-list .lang-select select {
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 15pt;
+  line-height: 1;
+  background-color: #8EFFAC;
+  border: 2px solid #555;
+  outline: none;
+  cursor: pointer;
+}
+
+header .header-list .lang-select select option {
+  text-align: center;
+  font-size: 15pt;
+}
+
+header .header-list .lang-select select option:hover {
+  background-color: #00BA69;
+}
+
+.popup-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 150%;
+  overflow-y: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: none;
+}
+
+.popup-wrapper .form-popup-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 500px;
+  min-height: 300px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 30px;
+}
+
+.popup-wrapper .form-popup-container .header {
+  position: relative;
+}
+
+.popup-wrapper .form-popup-container .header p {
+  position: absolute;
+  top: -20px;
+  right: 0px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  font-size: large;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: .4s ease-in;
+}
+
+.popup-wrapper .form-popup-container .header p:hover {
+  background-color: #86ff3b;
+  box-shadow: 0px 0px 0px 4px #ffffff, 0px 0px 0px 6px #86ff3b;
+  color: white;
+  transition: .4s ease-out;
+}
+
+.popup-wrapper .form-popup-container .header h3 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.popup-wrapper .form-popup-container .content {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif !important;
+  font-size: 15pt;
+}
+
+.popup-wrapper .form-popup-container .content table {
+  width: 100%;
+  font-size: large;
+}
+
+.popup-wrapper .form-popup-container .content table tr {
+  height: 30px;
+}
+
+.popup-wrapper .form-popup-container .content table th {
+  text-align: left;
+  width: 30%;
+}
+
+.popup-active {
+  display: block;
+}
+
+.btn-custom {
+  margin: auto;
+  width: 150px;
+  height: 50px;
+  border: 3px #00BA69 solid;
+  border-radius: 30px;
+  color: #636363;
+  font-size: 12pt;
+  background-color: transparent;
+  outline: none;
+  text-transform: uppercase;
+  transition: ease-out 0.4s;
+  position: relative;
+}
+
+.btn-custom:hover {
+  box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.356);
+  cursor: pointer;
+  background-color: #00BA69;
+  color: white;
+  transition: ease-in .4s;
+}
+
+/*
+    Liste des réclamtions
+*/
+.form-content {
+  width: 100%;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.form-content .search-form-content {
+  position: relative;
+}
+
+.form-content .search-form-content input {
+  width: 30%;
+  height: 50px;
+  padding: 20px;
+  padding-right: 60px;
+}
+
+.table tr .btn-manipulation {
+  position: relative;
+}
+
+.table tr .btn-manipulation div {
+  position: absolute;
+  top: 0;
+  right: 30px;
+  padding: 0 310px;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: .4s ease-out;
+}
+
+.table tr .btn-manipulation div button {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  width: 150px;
+  height: 50px;
+  margin: auto;
+}
+
+.table tr:hover > .btn-manipulation div {
+  opacity: 1;
+  visibility: visible;
+  transition: .4s ease-in;
+}
+
+.stat-perfect {
+  width: 50px;
+  height: 50px;
+  border: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: #86ff3b;
+}
+
+.stat-perfect:hover {
+  box-shadow: 0px 0px 0px 4px #ffffff, 0px 0px 0px 6px #86ff3b;
+  transition: .4s ease-out;
+}
+
+.stat-reported {
+  width: 50px;
+  height: 50px;
+  border: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: red;
+}
+
+.stat-reported:hover {
+  box-shadow: 0px 0px 0px 4px #ffffff, 0px 0px 0px 6px #ff3f3f;
+  transition: .4s ease-out;
+}
+
+/* spinner */
+.spinner-rotation {
+  width: 100px;
+  height: 100px;
+  border: 2px solid rgba(236, 240, 241, 0.5);
+  border-radius: 50%;
+  border-top: solid #ecf0f1;
+}
+
+/* dots */
+.dots-loading > div {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #ecf0f1;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+@keyframes popup {
+  from {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(500px);
+  }
+  10% {
+    display: block;
+  }
+  50% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  90% {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-500px);
+  }
+}
+
+/*
+    Pagination style
+*/
+dir-pagination-controls {
+  float: right;
+  margin-left: 20px;
+}
+
+dir-pagination-controls ul li {
+  width: 30px;
+  height: 30px;
+  line-height: 2;
+  margin: 0 2px;
+  background-color: #00FF9D;
+  text-align: center;
+}
+
+dir-pagination-controls ul li a {
+  color: #000000;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+/*
+        animations 
+*/
+.animate-if.ng-enter, .animate-if.ng-leave {
+  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+}
+
+.animate-if.ng-enter,
+.animate-if.ng-leave.ng-leave-active {
+  top: -50%;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.animate-if.ng-leave,
+.animate-if.ng-enter.ng-enter-active {
+  top: 50%;
+  visibility: visible;
+  opacity: 1;
+}
+
+.ng-fade.ng-enter, .ng-fade.ng-leave {
+  transition: all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s;
+}
+
+.ng-fade.ng-enter,
+.ng-fade.ng-leave.ng-leave-active {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.ng-fade-if.ng-leave,
+.ng-fade.ng-enter.ng-enter-active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.animate-repeat {
+  line-height: 30px;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  transition: all linear 0.5s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity: 0;
+  max-height: 0;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity: 1;
+  max-height: 30px;
+}
+/*# sourceMappingURL=commun.css.map */

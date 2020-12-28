@@ -1,0 +1,23 @@
+<!-- View Report data -->
+<ul>
+{% for key in result %}
+<li> <b>Last_name:</b> {{ key.last_name }} </li>
+<li> <b>First name:</b> {{ key.first_name }} </li>
+<li> <b>Subject:</b> {{ key.subject }} </li>
+<li> <b>Description:</b> {{ key.description }} </li>
+<li> <b>Date:</b> {{ key.date }} </li>
+<br>
+<p> --------------------------------------------------------------- </p>
+{% endfor %}
+</ul>
+
+<pre>
+{% for val in form_errors %}
+{{val}}
+{% endfor %}
+</pre>
+<pre>
+{% for val in form_validator %}
+{{val}}
+{% endfor %}
+</pre>

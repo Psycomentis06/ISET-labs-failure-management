@@ -1,0 +1,62 @@
+{% extends "../base.html" %}
+
+{% block header %}
+
+<!-- Admin side bar -->
+
+  {% if sideBar %}
+  <!-- Import the side bar only if the var sideBar exist -->
+
+  <div class="admin-side-bar">
+    <ul>
+      <li title="Dashboard">
+      <span class="badge badge-danger ml-2" id="notifsBadge"></span>
+        <a href="#!/" class="sidebar-dashboard">
+        </a>
+      </li>
+      <li title="Users">
+        <a href="#!users" class="sidebar-users"></a>
+      </li>
+        <li title="Settings">
+        <a href="#!settings" class="sidebar-settings"></a>
+      </li>
+    </ul>
+  </div>
+
+  {% endif %}
+
+<header>
+  <div class="plat-name">
+    <p class="name-text">
+      Gestion
+      des pannes
+    </p>
+  </div>
+  <ul class="header-list">
+
+    <li id="reclamation"><a href="/" class="lang" key="nav_home">Reclamation</a></li>
+    <li id="list_reclamation"><a href="listereclamation" class="lang" key="nav_report_list">Liste des reclamations</a></li>
+    <li id="etat_pc"><a href="stat" class="lang" key="nav_state">Etats des PC</a></li>
+    {% if  isAdmin %}
+      <li id="login"><a href="logout" class="lang" key="nav_logout">Logout</a></li>    
+      {% else %}
+    <li id="login"><a href="login" class="lang" key="nav_login">Login</a></li>
+    {% endif %}
+    <li>
+      <!-- language Select -->
+      <div class="lang-select">
+        <select name="choose_language" id="choose_language" onchange="switchLanguage(value);">
+          <option value="en" id="en" class="lang" key="nav_english">
+            English
+          </option>
+
+          <option value="fr" id="fr" class="lang" key="nav_french">
+            French
+          </option>
+        </select>
+      </div>
+    </li>
+  </ul>
+
+</header>
+{% endblock header %}

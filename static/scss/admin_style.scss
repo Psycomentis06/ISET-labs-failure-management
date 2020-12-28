@@ -1,0 +1,68 @@
+/**
+* Admin style
+*/
+
+// import files
+@import './varibles';
+@import './mixins';
+
+/* Side bar style */
+
+.admin-side-bar{
+    width: 100px;
+    height: 100vh;
+    background-color: $navbarColor;
+    float: left;
+    overflow: hidden;
+
+    ul{
+        margin-top: 50px;
+        list-style: none;
+        text-align: center;
+        li{
+            width: 100%;
+            margin: 20px 0;
+            padding: 10px 0;
+            transition: .4s ease-out;
+            cursor: pointer;
+            &:hover{
+                background-color: $activeRouteColor;
+                transition: .4s ease-in;
+            }
+            a{
+                text-decoration: none;
+                padding: 20px 30px;
+                color: $primaryTextColor;
+            }
+         }
+    }
+}
+
+header{
+    .plat-name{
+        left: 80px;
+    }
+}
+
+// admin home page dashboard
+
+// -> notification
+
+.notifcations-content {
+
+    height: 70vh;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column-reverse;
+
+    .new-notification {
+        cursor: pointer;
+    }
+}
+
+// -> most reported
+
+.pcs-data {
+    height: 70vh;
+    overflow-y: scroll;
+}

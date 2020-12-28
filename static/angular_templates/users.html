@@ -1,0 +1,54 @@
+
+<!-- Users template -->
+
+<div class="admin-users">
+    <h1>Users</h1>
+	
+	<!-- Search form  -->
+    <div class="form-content">
+      <div class="search-form-content">
+        <span class="search-input-form">
+          <input type="text" ng-model="search_value.email" name="search" class="lang" key="report_list_search_input"
+            placeholder="Search">
+        </span>
+      </div>
+    </div>
+
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col text-success">User ID</th>
+          <th scope="col text-success" >First Name</th>
+          <th scope="col text-success" >Last Name</th>
+          <th scope="col text-success" >Email</th>
+          <th scope="col text-success" >Phone Number</th>
+          <th scope="col text-success" >Regiter date</th>
+          <th scope="col text-success">Contact</th>
+        </tr>
+
+      </thead>
+      <tbody>
+
+        <tr dir-paginate="value in usersData | filter:search_value | orderBy: '-date'| itemsPerPage: 7 "
+          class="report-list-row">
+          <td ng-bind="value.user_id | limitTo: 20:0 "></td>
+          <td ng-bind="value.first_name"></td>
+          <td ng-bind="value.last_name"></td>
+          <td ng-bind="value.email"></td>
+          <td ng-bind="value.phone_number"></td>
+          <td ng-bind="value.signin_date | date:'MM/dd/yyyy'"></td>
+          <th scope="col text-success"><a ng-href="mailto:%/value.email/%">Contact User  here</a></th>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Dir Pagination Controls -->
+
+    <dir-pagination-controls>
+      [auto-hide="false"]
+      [max-size="5"]
+    </dir-pagination-controls>
+
+  </div>
+
+</div>

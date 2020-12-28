@@ -1,0 +1,57 @@
+/**
+* Admin style
+*/
+/* Side bar style */
+.admin-side-bar {
+  width: 100px;
+  height: 100vh;
+  background-color: #00FF9D;
+  float: left;
+  overflow: hidden;
+}
+
+.admin-side-bar ul {
+  margin-top: 50px;
+  list-style: none;
+  text-align: center;
+}
+
+.admin-side-bar ul li {
+  width: 100%;
+  margin: 20px 0;
+  padding: 10px 0;
+  transition: .4s ease-out;
+  cursor: pointer;
+}
+
+.admin-side-bar ul li:hover {
+  background-color: #8EFFAC;
+  transition: .4s ease-in;
+}
+
+.admin-side-bar ul li a {
+  text-decoration: none;
+  padding: 20px 30px;
+  color: #000000;
+}
+
+header .plat-name {
+  left: 80px;
+}
+
+.notifcations-content {
+  height: 70vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.notifcations-content .new-notification {
+  cursor: pointer;
+}
+
+.pcs-data {
+  height: 70vh;
+  overflow-y: scroll;
+}
+/*# sourceMappingURL=admin_style.css.map */

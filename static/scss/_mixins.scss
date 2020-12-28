@@ -1,0 +1,77 @@
+// Some mixin code
+@import './varibles';
+
+@mixin AncreStyle {
+    text-decoration: none;
+    color: $primaryTextColor;
+}
+
+@mixin CenterElement {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin Btn {
+    margin: auto;
+    width: $btnMediumWidth;
+    height: $btnMediumHeight;
+    border: 3px $inputBorderColor solid;
+    border-radius: 30px;
+    color: $thirdTextColor;
+    font-size: 12pt;
+    background-color: transparent;
+    outline: none;
+    text-transform: uppercase;
+    transition: ease-out.4s;
+}
+
+@mixin BtnHover {
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.356);
+    cursor: pointer;
+    background-color: $inputBorderColor;
+    color: white;
+    transition: ease-in .4s;
+}
+
+@mixin FasBtn {
+    color: $thirdTextColor;
+    font-size: 12pt;
+}
+
+@mixin ChoiceBtns {
+    width: 80px;
+    height: 80px;
+    background-color: $iconsBgColor;
+    border: transparent;
+    border-radius: 50%;
+    margin: auto;
+    line-height: 2.5;
+    outline: none;
+    transition: ease-in-out .5s;
+    &:hover{
+        box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.356);
+        cursor: pointer;
+        transition: ease-in-out .5s;
+    }
+}
+
+@mixin ContainersStyle {
+    @include CenterElement;
+    width: $containerMaxWidth;
+    height: $containerMaxHeight;
+    border: 8px $formContainerBorderColor solid;
+    border-radius: 10px;
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+}
+
+@mixin Bubbles {
+    width: 50px;
+    height: 50px;
+    border: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+}

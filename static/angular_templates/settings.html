@@ -1,0 +1,201 @@
+<!-- Settings template -->
+
+<div class="admin-settings">
+	<h1>Settings</h1>
+
+	<div class="md-form">
+
+		<div class="row">
+			<div class="col-6">
+				<!-- Alerts messages -->
+				<div ng-if="danger_alert">
+					<!-- Danger alert -->
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						<strong>Error:&nbsp;</strong>
+						<p ng-bind="danger_alert_msg"></p>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"
+							ng-click="close_alerts()">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+
+				<div ng-if="valid_alert">
+					<!-- Success alert -->
+					<div class="alert alert-success alert-dismissible fade show" role="alert">
+						<strong>Sucess:&nbsp;</strong>
+						<p ng-bind="valid_alert_msg"></p>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"
+							ng-click="close_alerts()">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+				</div>
+
+				<!-- page other content -->
+				<div class="row">
+					<div class="col">
+						<h2>Change admin password</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<input type="password" class="form-control" name="old_pass" id="form-1" ng-model="old_password">
+						<label for="form-1">Admin old password</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<input type="password" class="form-control" name="new_pass" id="form-2" ng-model="new_password">
+						<label for="form-2">Admin new password</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<input type="password" class="form-control" name="pass_re_new" id="form-3"
+							ng-model="retype_password">
+						<label for="form-3">Admin retype new password</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div ng-if="!change_pass_loader">
+							<button class="btn btn-success btn-block waves-effect"
+								ng-click="changePassword(old_password, new_password, retype_password)">
+								Change password
+							</button>
+						</div>
+
+						<div ng-if="change_pass_loader">
+							<!-- Spinner btn -->
+							<button class="btn btn-success btn-block" type="button" disabled>
+								<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+								Loading...
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="row">
+					<div class="col">
+						<h2>Delete all reports</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<button class="btn btn-danger btn-block waves-effect" data-toggle="modal" data-target="#basicExampleModal-1">
+							Delete
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<br>
+		<div class="row">
+			<div class="col-6">
+				<div class="row">
+					<div class="col">
+						<h2>Change admin Email</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<input type="text" class="form-control" name="old_mail" ng-model="old_mail" id="form-4">
+						<label for="form-4">Admin old email</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<input type="text" class="form-control" name="new_mail" ng-model="new_mail" id="form-5">
+						<label for="form-5">Admin new email</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div ng-if="!change_mail_loader">
+							<button class="btn btn-success btn-block waves-effect" ng-click="editEmail(new_mail, old_mail)">
+								Change email
+							</button>
+							</div>
+						<div ng-if="change_pass_loader">
+							<!-- Spinner btn -->
+							<button class="btn btn-success btn-block" type="button" disabled>
+								<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+								Loading...
+							</button>
+						</div>
+					</div>
+					<div>
+					</div>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="row">
+					<div class="col">
+						<h2>Delete all users</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<button class="btn btn-danger btn-block waves-effect" data-toggle="modal" data-target="#basicExampleModal-2">
+							Delete
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- delete confirm modal  -->
+
+<!-- Modal  1 reports -->
+<div class="modal fade" id="basicExampleModal-1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+		<h5 class="modal-title" id="exampleModalLabel">Delete All Reports</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		</div>
+		<div class="modal-body">
+			You are goind to delete all the reports on the database permantly no backup and there is no way you undo it
+			if you confirm means you are sure !
+		</div>
+		<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		<button type="button" class="btn btn-primary waves-effect" ng-click="deleteAllReports()">Continue</button>
+		</div>
+	</div>
+	</div>
+</div>
+
+<!-- Modal  2 PCs -->
+<div class="modal fade" id="basicExampleModal-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+		<h5 class="modal-title" id="exampleModalLabel">Delete All PCs</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		</div>
+		<div class="modal-body">
+			You are goind to delete all the PCs on the database permantly no backup and there is no way you undo it
+			if you confirm means you are sure !
+		</div>
+		<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		<button type="button" class="btn btn-primary waves-effect" ng-click="deleteAllReports()">Continue</button>
+		</div>
+	</div>
+	</div>
+</div>
+
+</div>

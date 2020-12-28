@@ -1,0 +1,114 @@
+/* 
+        This file is for customising Font Awesome  icons
+*/
+.btn-next::after{
+    font-family: 'Font Awesome\ 5 Free';
+    content: '\f061';
+    font-weight: 900;
+    
+    width: 100%;
+    position: absolute;
+    top: 15px;
+    left: 50px;
+}
+
+.add-report::after {
+    font-family: 'Font Awesome\ 5 Free';
+    content: '\f067';
+    font-weight: 900;
+
+    color: #636363;
+    font-size: 24pt;
+}
+
+.help::after {
+    font-family: 'Font Awesome\ 5 Free';
+    content: '\f128';
+    font-weight: 900;
+
+    color: #636363;
+    font-size: 24pt;
+}
+
+.login-icon::after{
+    font-family: 'Font Awesome\ 5 Free';
+    content: '\f007';
+    font-weight: 900;
+
+    font-size: 48pt;
+
+}
+
+
+.search-form-content::after{
+    font-family: 'Font Awesome\ 5 Free';
+    content: '\f002';
+    font-weight: 900;
+
+    color: #636363;
+    opacity: 0.5;
+    font-size: 20pt;
+    position: absolute;
+    top: 5px;
+    left: 60%;
+}
+
+
+/* buttons of report manipulation */
+
+.plus-info::before{
+    font-family: 'Font Awesome\ 5 Free';
+    content: '\f05a';
+    font-weight: 900;
+
+    font-size: 15pt;
+    margin-right: 10px;    
+}
+
+.edit-report::before{
+    font-family: 'Font Awesome\ 5 Free';
+    content: '\f044';
+    font-weight: 900;
+
+    font-size: 15pt;
+    margin-right: 10px;
+}
+
+.delete-report::before{
+    font-family: 'Font Awesome\ 5 Free';
+    content: '\f056';
+    font-weight: 900;
+
+    font-size: 15pt;
+    margin-right: 10px;
+}
+
+/* Admin side bar */
+
+.sidebar-dashboard::before {
+    font-family: 'Font Awesome\ 5 Free';
+    content: "\f06e";
+    font-weight: 900;
+    font-size: 20pt;
+}
+
+.sidebar-users::before {
+    font-family: 'Font Awesome\ 5 Free';
+    content: "\f0c0";
+    font-weight: 900;
+    font-size: 20pt;
+}
+
+.sidebar-reports::before {
+    font-family: 'Font Awesome\ 5 Free';
+    content: "\f0e0";
+    font-weight: 900;
+    font-size: 20pt;
+}
+
+.sidebar-settings::before {
+    font-family: 'Font Awesome\ 5 Free';
+    content: "\f0ad";
+    font-weight: 900;
+    font-size: 20pt;
+}

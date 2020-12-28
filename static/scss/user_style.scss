@@ -1,0 +1,391 @@
+// import files
+@import './varibles';
+@import './mixins';
+
+
+
+/*
+    Reclamation page (home page)
+*/
+
+// Styling the form containers or parts
+
+.center-wrapper{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.part-one, .part-two, .part-three {
+    @include CenterElement;
+    text-align: center;
+    max-width: $containerMaxWidth;
+    border: 8px $formContainerBorderColor solid;
+    border-radius: 10px;
+    padding: 30px 20px;
+    input, textarea {
+        display: inline-block;
+        width: 90%;
+        height: 30px;
+        border: 3px $inputBorderColor solid;
+        border-radius: 30px;
+        margin-bottom: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        outline: none;
+    }
+    textarea{
+        padding: 20px;
+        height: 100px;
+    }
+    .form-title, .form-comment{
+        text-align: center;
+        color: $thirdTextColor;
+    }
+    .form-comment{
+        margin-bottom: 20px;
+    }
+}
+
+
+.btn-icons-container{
+    @include CenterElement;
+    width: $containerMaxWidth;
+    height: $containerMaxHeight;
+    border: 8px $formContainerBorderColor solid;
+    border-radius: 10px;
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+    button{
+        @include ChoiceBtns;
+    }
+}
+
+.add-report:hover, .help:hover {
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.356);
+    cursor: pointer;
+    transition: ease-in-out .5s;
+}
+
+// form validator help button style 
+
+.form-valid-help-btn{
+    margin-top: 20px;
+    background-color: $backgroundColor;
+    color: $thirdTextColor;
+    border: none;
+    border-bottom: 3px $thirdTextColor solid;
+    cursor: pointer;
+    outline: none;
+}
+
+// help part style
+
+.help-container{
+    @include ContainersStyle;
+    position: relative;
+    p {
+        position: absolute;
+        top: 10%;
+        left: 5%;
+        font-size: 20pt;
+        text-align: center;
+        width: 80%;
+        height: 180px;
+        border: 3px solid $inputBorderColor;
+        padding: 20px;
+        list-style: none;
+        z-index: 1;
+        &::after{
+            content: '';
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 196px;
+            left: 165px;
+            background-color: $backgroundColor;
+            border-bottom: 3px solid $inputBorderColor;
+            border-right: 3px solid $inputBorderColor;
+            transform: rotate(45deg);
+            z-index: -1;
+        }
+        ul {
+            list-style: none;
+        }
+    }
+    button {
+        @include ChoiceBtns;
+        margin-top: 70%;
+    }
+
+    .choice-ancres{
+        position: absolute;
+        bottom: 45px;
+        left: 0;
+        text-align: center;
+        width: 100%;
+        z-index: -1;
+        ul{
+            width: 100%;
+            li{
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                list-style: none;
+                background-color: $thirdTextColor;
+                margin: 0 50px;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: .4s;
+                &:hover{
+                    background-color: $listHoverAncers;
+                    box-shadow: 0px 0px 0px 4px $backgroundColor,
+                                0px 0px 0px 6px $listHoverAncers;
+                    transition: .4s ease-out;
+                }
+                &:active{
+                    background-color: $listFocusAncers;
+                    box-shadow: 0px 0px 0px 4px $backgroundColor,
+                                0px 0px 0px 6px $listFocusAncers;
+                    transition: ease-out .5s;
+                }
+        }
+    }
+    }
+
+}
+
+
+// Form containers styles and transitions
+
+.part-three,.part-two{
+    opacity: 0;
+    z-index: -1;
+    left: 100%;
+    transition: ease-in-out 1s ;
+}
+
+.part-one, .help-container{ /*Disable choice part*/
+    opacity: 0;
+    visibility: hidden;
+    z-index: -999;
+    transition: ease-in-out 1s;
+}
+
+.coming-part{
+    opacity: 1;
+    z-index: 1;
+    left: 50%;
+    transition: ease-in-out 1s ;
+}
+
+.out-part {
+    opacity: 0;
+    z-index: -999;
+    left: -100%;
+    transition: ease-in-out 1s ;
+}
+
+.fade-in{
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+    transition: ease-in 1s;
+} 
+
+.fade-out{
+    opacity: 1;
+    visibility: visible;
+    animation-name: fadeOut;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+}
+
+
+// SVG Shapes Style
+
+.shapes-container-left{
+    position: absolute;
+    top: 5%;
+    left: 0;
+    .shape-two {
+        position: absolute;
+        top: 280px;
+        left: 100px;
+    }
+    .shape-one {
+        position: absolute;
+        left: -80px;
+    }
+}
+.shapes-container-right{
+    position: absolute;
+    top: 10%;
+    right: 180px;
+    .shape-two {
+        position: absolute;
+        top: 300px;
+        right: 100px;
+    }
+    .shape-one {
+        position: absolute;
+        right: -80px;
+    }
+}
+.shape-one{
+    width: $SVGShapeOneWidth;
+    height: $SVGShapeOneHeight;
+}
+.shape-two {
+    width: $SVGShapeTwoWidth;
+    height: $SVGShapeTwoHeight;
+}
+
+
+// Tooltip styling
+.tooltip{
+    position: relative;
+    margin: auto;
+    p{
+        background-color: $tooltipColor;
+        color: $secondaryTextColor;
+        width: 150px;
+        height: 40px;
+        position: absolute;
+        top: -50px;
+        left: -35px;
+        text-align: center;
+        line-height: 2.5;
+        border: transparent;
+        border-radius: 30px;
+        padding: 0 5px;
+        box-shadow: 0px 0px 5px 2px $tooltipColor;
+        visibility: hidden;
+        opacity: 0;
+        transition: ease-out .4s;
+        &::after{
+            content: '';
+            width: 20px;
+            height: 20px;
+            background-color: $tooltipColor;
+            box-shadow: 0px 0px 5px 1px $tooltipColor;
+            position: absolute;
+            top: 30px;
+            left: 65px;
+            transform: rotate(45deg);
+        }
+    }
+    button{
+        &:hover {
+           & + .tooltip-content{
+               visibility: visible;
+               opacity: 1;
+               transition: ease-in .4s;
+           }
+        }
+    }
+}
+
+.message-event{
+    @include CenterElement;
+    left: 30%;
+    width: 300px;
+    padding: 20px 10px;
+    background-color: #07BEF4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: $secondaryTextColor;
+    z-index: 1;
+    border-left: 5px solid $successColorSecondary;
+    box-shadow: 0px 8px 3px -6px $tooltipColor;
+    animation: popup 3s forwards;
+}
+
+
+
+/*.report-list-row{
+
+    &:hover{
+        cursor: pointer;
+    }
+}*/
+
+/*
+    Login page
+*/
+
+.login-container  {
+    @include CenterElement;
+    max-width: $containerMaxWidth;
+    min-height: $containerMaxHeight;
+    display:  inline-block;
+    text-align: center;
+    border: 3px $iconsBgColor solid;
+    border-radius: 30px;
+    padding: 5px 20px;
+    input {
+        width: 90%;
+        height: 20px;
+        padding: 10px 20px;
+        font-size: 16pt;
+        margin: 10px 0px;
+        border: 3px $inputBorderColor solid;
+        border-radius: 30px;
+    }
+    .login-title-icon-container {
+        width: 100px;
+        height: 100px;
+        margin: auto;
+        padding: 20px;
+        border: 3px $iconsBgColor solid;
+        border-radius: 50%;
+        background-color: white;
+        transform: translateY(-50px);
+        .title {
+            font-style: oblique;
+        }
+    }
+    .alert {
+        margin: 10px 0px;
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+        border-radius: 30px;
+      }
+      
+      .closebtn {
+        margin-left: 15px;
+        color: white;
+        font-weight: bold;
+        float: right;
+        font-size: 22px;
+        line-height: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      
+      .closebtn:hover {
+        color: black;
+      }
+}
+
+
+  // Custom animations
+
+@keyframes fadeOut{
+    form {
+        opacity: 1;
+        visibility: visible;
+    }
+    90% {
+        
+    }
+    to {
+        opacity: 0;
+        visibility: hidden;
+        z-index: -999;
+        transition: ease-in .4s;
+    }
+}
+
+

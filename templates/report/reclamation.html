@@ -1,0 +1,218 @@
+{% extends "./report_layout.html" %}
+
+{% block title %}
+Reclamation
+{% endblock title %}
+
+
+{% block body %}
+
+{% if isAdmin %}
+<!-- Admin view -->
+
+<!-- Pre-load class is to disable the transitions once the page is loaded -->
+<div class="container" ng-app="adminHome" ng-controller="adminHomeController">
+
+<div ng-view>
+  <!-- Angular js route content root -->
+</div>
+</div>
+
+{% else %}
+<!-- Normal user View -->
+
+<!-- Pre-load class is to disable the transitions once the page is loaded -->
+<div class="container">
+  <!-- Form and the middle content -->
+  <div class="center-wrapper">
+    <!-- Choose interface -->
+      <div class="choice-conatiner">
+        <div class="btn-icons-container">
+
+          <div class="tooltip">
+             <!-- Tooltip for the action iconcs -->
+          <button id="add-report" class="add-report"></button>
+          <p class="tooltip-content lang" key="add_tooltip">Ajouter une réclamation</p>
+          </div>
+
+          <div class="tooltip">
+            <!-- Tooltip for the action iconcs -->
+          <button id="help" class="help"></button>
+          <p class="tooltip-content lang" id="help_tooltip_content" key="help_tooltip"> Aide </p>
+          </div>
+        </div>
+      </div>
+      <!-- Help part -->
+      <div class="help-container">
+        <p id="help-text-content" class="lang" key="platform_desc">
+          <!-- Content will be added with JQuery -->
+          l'objectif de cette plate-forme est de faciliter le travail des enseignants
+          en signalant le PC endommagé en ligne à partir d'ici, cliquez simplement pour
+          ajouter le rapport
+        </p>
+        <div class="choice-ancres">
+          <ul>
+          <li class="ancre1"></li>
+          <li class="ancre2"></li>
+          </ul>
+        </div>
+        <button id="help-add" class="help"></button>
+      </div>
+    <!-- Form parts -->
+    <div class="form-container">
+      <form name="report-form" method="POST" action="AddReclamation">
+      {% csrf_token %}
+        <div class="part-one">
+          <h1 class="form-title lang" key="form_title">
+            Ajouter une réclamation
+          </h1>
+          <h4 class="form-comment lang" key="form_description_p1">
+            Informations Personnel
+          </h4>
+          <input type="text" name="last_name" class="lang" key="form_last_name" placeholder="Votre Nom" onfocus="isOnFocus();" onfocusout="isOutFocus();">
+          <input type="text" name="first_name" class="lang" key="form_first_name" placeholder="Votre Prénom" onfocus="isOnFocus();" onfocusout="isOutFocus();">
+          <input type="email" name="email" class="lang" key="form_email" placeholder="Votre E-mail" onfocus="isOnFocus();" onfocusout="isOutFocus();">
+          <input type="text" name="phone_number" class="lang" key="form_phone" placeholder="Votre Téléphone" onfocus="isOnFocus();" onfocusout="isOutFocus();">
+          <button class="btn-custom btn-next lang" key="next_btn" id="first-form-page" type="button">Suivant</button>
+          <br>
+          <button class="form-valid-help-btn form_valid_help_btn" class="lang" key="form_validator_btn" type="button">form validator help?</button>
+        </div>
+
+        <div class="part-two">
+          <h1 class="form-title lang" key="form_title">
+            Ajouter une réclamation
+          </h1>
+          <h4 class="form-comment lang" key="form_description_p2">
+            Informations de Pc
+          </h4>
+          <input type="text" class="lang" key="form_pc_name" name="pc_name" placeholder="Nom de PC" onfocus="isOnFocus();" onfocusout="isOutFocus();">
+          <input type="text" class="lang" key="form_lab_name" name="labo_name" placeholder="Nom de Labo" onfocus="isOnFocus();" onfocusout="isOutFocus();">
+          <input type="text" class="lang" key="form_pc_number" name="num_pc" placeholder="Numéro de PC" onfocus="isOnFocus();" onfocusout="isOutFocus();">
+          <button class="btn-custom btn-next lang" key="next_btn" id="second-form-page" type="button">Suivant</button>
+          <br>
+          <button class="form-valid-help-btn form_valid_help_btn lang" key="form_validator_btn" type="button">form validator help?</button>
+        </div>
+
+        <div class="part-three">
+          <h1 class="form-title lang" key="form_title">
+            Ajouter une réclamation
+          </h1>
+          <h4 class="form-comment lang" key="form_description_p3">
+            Sujet
+          </h4>
+          <input type="text" name="subject" class="lang" key="form_report_subject" placeholder="Votre Sujet" onfocus="isOnFocus();" onfocusout="isOutFocus();">
+          <textarea name="description" class="lang" key="form_report_description"  style="resize: none;" placeholder="Décrir votre probleme ici..." onfocus="isOnFocus();" onfocusout="isOutFocus();"></textarea>
+          <button class="btn-custom lang" key="submit_btn" id="thrid-form-page" type="submit">Envoyer</button>
+          <br>
+          <button class="form-valid-help-btn form_valid_help_btn" type="button">form validator help?</button>
+        </div>
+
+      </form>
+    </div>
+    <!--Shapes SVG Elements-->
+
+    <div class="shapes-container-left">
+
+      <div class="shape-one place1">
+        <div class="place1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="345" height="345" viewBox="0 0 345 345">
+            <circle id="Ellipse_2" class="first-shape" data-name="Ellipse 2" cx="172.5" cy="172.5" r="172.5"
+              fill="#8effac" />
+          </svg>
+        </div>
+        <div class="shape-two place2">
+
+          <svg xmlns="http://www.w3.org/2000/svg" width="409" height="409" viewBox="0 0 409 409">
+            <circle id="Ellipse_3" data-name="Ellipse 3" cx="204.5" cy="204.5" r="204.5" fill="#8effac" />
+          </svg>
+
+        </div>
+      </div>
+    </div>
+    <div class="shapes-container-right">
+      <div class="shape-one place3">
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="409" height="409" viewBox="0 0 409 409">
+          <circle id="Ellipse_4" data-name="Ellipse 4" cx="204.5" cy="204.5" r="204.5" fill="#8effac" />
+        </svg>
+
+      </div>
+
+      <div class="shape-two place4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="345" height="345" viewBox="0 0 345 345">
+          <circle id="Ellipse_5" data-name="Ellipse 5" cx="172.5" cy="172.5" r="172.5" fill="#8effac" />
+        </svg>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="message-event">
+    <!-- This message wil be handled by js when the user press some button like space to pause the animation -->
+  </div>
+
+  <!-- Form cautions popup -->
+
+  <div class="popup-wrapper">
+  <div class="form-popup-container">
+    <div class="header">
+      <p id="close_popup">X</p>
+      <h3 class="lang" key="">Inoformations sur les validation des champ de formulaire</h3>
+    </div>
+
+    <div class="content">
+      <table>
+        <tr>
+          <th class="lang" key="help_modal_last_name">Nom:</th>
+          <td class="lang" key="help_modal_last_name_desc">chaine des caractère de longeur min 3</td>
+          
+        </tr>
+
+        <tr>
+          <th class="lang" key="help_modal_last_name">Prénom:</th>
+          <td class="lang" key="help_modal_first_name_desc">longeur min 3 caractères</td>
+        </tr>
+
+        <tr>
+          <th class="lang" key="help_modal_email">Email:</th>
+          <td class="lang" key="help_modal_email_desc">les services valides : Gmail, Yahoo, Outlook, Hotmail</td>
+        </tr>
+
+        <tr>
+          <th class="lang" key="help_modal_phone">Numéro:</th>
+          <td class="lang" key="help_modal_phone_desc">Chaine numérique de longeur min de 8</td>
+        </tr>
+
+        <tr>
+          <th class="lang" key="help_modal_pc_name">Nom de PC:</th>
+          <td class="lang" key="help_modal_pc_name_desc">chaine de caractère de longeur compris entre 3 et 8</td>
+        </tr>
+
+        <tr>
+          <th class="lang" key="help_modal_lab_name">Nom de Labo:</th>
+          <td class="lang" key="help_modal_lab_name_desc">chaine de chars de longeur min 2</td>
+        </tr>
+
+        <tr>
+          <th class="lang" key="help_modal_pc_number">Num PC:</th>
+          <td class="lang" key="help_modal_pc_number_desc">chaine numérique de longeur min de 2</td>
+        </tr>
+
+        <tr>
+          <th class="lang" key="help_modal_subject">Suject:</th>
+          <td class="lang" key="help_modal_subject_desc">chaine de chars de longeur min de 5</td>
+        </tr>
+
+        <tr>
+          <th class="lang" key="help_modal_description">Description:</th>
+          <td class="lang" key="help_modal_description_desc">text de longeur min de 10 et max de 2000</td>
+        </tr>
+      </table>
+    </div>
+    </div>
+  </div>
+
+</div>
+
+{% endif %}
+{% endblock body %}

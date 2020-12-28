@@ -1,0 +1,40 @@
+{% extends "./report_layout.html" %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+{% block body %}
+<div class="container pre-load">
+  <div class="login-container">
+    <div class="loading-icon-wrapper">
+      <div class="login-title-icon-container">
+        <div class="login-icon"></div>
+        <div class="title">
+          <b class="lang" key="admin_login_text"> Admin Login </b>
+        </div>
+      </div>
+    </div>
+
+    <div class="login-form">
+      <form method="post">
+        {% csrf_token %}
+        <input type="text" class="lang" key="admin_username" name="username" placeholder="Admin username">
+        <input type="password" class="lang" key="admin_password" name="password" placeholder="Admin password">
+        <button type="submit" class="btn-custom login-submit lang" key="submit_btn">Envoyer</button>
+      </form>
+    </div>
+    {% if  LoginError|length > 0  %}
+      <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        <strong>Error! &nbsp;</strong>{{LoginError.0}}
+      </div>
+    {% endif %}
+    <!-- Login  Errors -->
+
+
+
+      
+  </div>
+</div>
+{% endblock body %}
