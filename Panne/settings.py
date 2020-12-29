@@ -142,7 +142,7 @@ EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_PASSWORD = 'Your sendgrid or other smtp api key'
 
 # allow svg files
 
